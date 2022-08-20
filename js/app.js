@@ -9,8 +9,17 @@ function getPin() {
         return getPin();
     }
 }
+
+
+var tryLeft = 3;
+
 function generatePin() {
     const random = Math.round(Math.random() * 10000);
+
+    var tryLeftElement = document.getElementById('try-left');
+    tryLeftElement.style.display = 'block';
+    tryLeftElement.innerText = tryLeft + " try left";
+
     return random;
 }
 
@@ -40,6 +49,13 @@ document.getElementById('calculator').addEventListener('click', function (event)
 });
 
 document.getElementById('verify-pin').addEventListener('click', function () {
+
+
+    tryLeft--;
+    var tryLeftElement = document.getElementById('try-left');
+    tryLeftElement.style.display = 'block';
+    tryLeftElement.innerText = tryLeft + " try left";
+
     const displayPinField = document.getElementById('display-pin');
     const currentPin = displayPinField.value;
 
@@ -50,11 +66,18 @@ document.getElementById('verify-pin').addEventListener('click', function () {
     const pinFailureMessage = document.getElementById
         ('pin-failur');
 
-    if (typedNumer === currentPin) {
-        pinFailureMessage.style.display = 'none';
-        pinSuccessMessage.style.display = 'block';
+    if (tryLeft > 0) {
+        if (typedNumer === currentPin) {
+            pinFailureMessage.style.display = 'none';
+            pinSuccessMessage.style.display = 'block';
+        } else {
+            pinSuccessMessage.style.display = 'none';
+            pinFailureMessage.style.display = 'block';
+        }
     } else {
+        tryLeftElement.style.display = 'none';
         pinSuccessMessage.style.display = 'none';
         pinFailureMessage.style.display = 'block';
+        pinFailureMessage.innerText = '❌ All Tries Finished! Generate another pin and try again!';
     }
 });
