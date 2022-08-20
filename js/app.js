@@ -20,6 +20,7 @@ function generatePin() {
     var tryLeftElement = document.getElementById('try-left');
     tryLeftElement.style.display = 'block';
     tryLeftElement.innerText = tryLeft + " try left";
+    document.getElementById('verify-pin').removeAttribute("disabled");
 
     return random;
 }
@@ -49,9 +50,7 @@ document.getElementById('calculator').addEventListener('click', function (event)
     }
 });
 
-document.getElementById('verify-pin').addEventListener('click', function () {
-
-
+document.getElementById('verify-pin').addEventListener('click', function (event) {
     tryLeft--;
     var tryLeftElement = document.getElementById('try-left');
     tryLeftElement.style.display = 'block';
@@ -71,6 +70,8 @@ document.getElementById('verify-pin').addEventListener('click', function () {
         if (typedNumer === currentPin) {
             pinFailureMessage.style.display = 'none';
             pinSuccessMessage.style.display = 'block';
+            tryLeftElement.style.display = 'none';
+            event.target.setAttribute('disabled', true);
         } else {
             pinSuccessMessage.style.display = 'none';
             pinFailureMessage.style.display = 'block';
