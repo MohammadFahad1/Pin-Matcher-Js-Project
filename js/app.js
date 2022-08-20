@@ -22,6 +22,13 @@ function generatePin() {
     tryLeftElement.innerText = tryLeft + " try left";
     document.getElementById('verify-pin').removeAttribute("disabled");
 
+
+    const pinSuccessMessage = document.getElementById('pin-success');
+    const pinFailureMessage = document.getElementById
+        ('pin-failur');
+    pinSuccessMessage.style.display = 'none';
+    pinFailureMessage.style.display = 'none';
+
     return random;
 }
 
