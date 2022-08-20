@@ -16,6 +16,7 @@ var tryLeft = 3;
 function generatePin() {
     const random = Math.round(Math.random() * 10000);
 
+    tryLeft = 3;
     var tryLeftElement = document.getElementById('try-left');
     tryLeftElement.style.display = 'block';
     tryLeftElement.innerText = tryLeft + " try left";
